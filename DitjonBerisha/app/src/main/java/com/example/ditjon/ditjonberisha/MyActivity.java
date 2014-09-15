@@ -12,12 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -25,6 +23,7 @@ import java.util.Locale;
 
 public class MyActivity extends Activity {
 
+    // create variable
     private GoogleMap map;
     private String city = "n/a";
     private String latitude = "n/a";
@@ -48,6 +47,7 @@ public class MyActivity extends Activity {
         db.execSQL("Create Table if not exists tblLocation (ID INTEGER PRIMARY KEY AUTOINCREMENT, City Varchar, " +
                 "Latitude Varchar, Longitude Varchar, Altitude Varchar)");
 
+        // Get map
         map=((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         map.setMyLocationEnabled(true);
     }
@@ -69,12 +69,16 @@ public class MyActivity extends Activity {
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
+    // My location button onclick
     public void location(View v){
 
         if (map.getMyLocation() != null) {
+            // call function get_location
             this.get_location();
+            // create a string for toast
             String message = "You are in: " + city;
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            // Zoom camera on my location
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude)), 15));
         }
         else
@@ -85,9 +89,11 @@ public class MyActivity extends Activity {
     public void get_location(){
         if (map.getMyLocation() != null) {
             try {
-                // get latitude, longitude and altitude
+                // get latitude
                 latitude = String.valueOf(map.getMyLocation().getLatitude());
+                // get longitude
                 longitude = String.valueOf(map.getMyLocation().getLongitude());
+                // get altitude
                 altitude = String.valueOf(map.getMyLocation().getAltitude());
 
                 // get name of the city
@@ -103,9 +109,10 @@ public class MyActivity extends Activity {
         }
     }
 
+    // Weather button onclick
     public void weather(View v){
 
-        // start weather activity and send data
+        // start weather activity and send data(city,latitude,longitude)
         this.get_location();
         Intent intent = new Intent(this, Weather.class);
         Bundle extras = new Bundle();
@@ -116,8 +123,10 @@ public class MyActivity extends Activity {
         startActivity(intent);
     }
 
-    public void info(View v){
+    // Info location button onclick
+    public void info_location(View v){
 
+        // call function get_location
         this.get_location();
         if(map.getMyLocation() != null){
             try {
@@ -131,15 +140,20 @@ public class MyActivity extends Activity {
         }
         else {
             try {
-                // Select the last row and get data
+                // Create query, Select the last row
                 Cursor cursor = db.rawQuery("SELECT * FROM tblLocation ORDER BY ID DESC LIMIT 1", null);
                 if (cursor != null) {
                     cursor.moveToNext();
+                    // get column city from last row
                     city = cursor.getString(cursor.getColumnIndex("City"));
+                    // get column latitude from last row
                     latitude = cursor.getString(cursor.getColumnIndex("Latitude"));
+                    // get column longitude from last row
                     longitude = cursor.getString(cursor.getColumnIndex("Longitude"));
+                    // get column altitude from last row
                     altitude = cursor.getString(cursor.getColumnIndex("Altitude"));
 
+                    // Alert dialog to inform
                     AlertDialog.Builder alert = new AlertDialog.Builder(this,5);
                     alert.setTitle("No gps found!");
                     alert.setMessage("Data from history");
@@ -151,7 +165,7 @@ public class MyActivity extends Activity {
             }
         }
 
-        // start Location activity and send data
+        // start Location activity and send data(city,latitude,longitude,altitude)
         Intent intent = new Intent(this, Location.class);
         Bundle extras = new Bundle();
         extras.putString("city",city);
