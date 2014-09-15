@@ -14,14 +14,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,18 +28,19 @@ import java.io.InputStreamReader;
 
 public class Weather extends Activity {
 
+    // Create variables
     TextView temperature;
     TextView pressure;
     TextView humidity;
     TextView description;
     TextView city;
-    private String latitude;
-    private String longitude;
-    private String s_city;
-    private String s_temperature;
-    private String s_pressure;
-    private String s_humidity;
-    private String s_description;
+    private String StrLatitude;
+    private String StrLongitude;
+    private String StrCity;
+    private String StrTemperature;
+    private String StrPressure;
+    private String StrHumidity;
+    private String StrDescription;
     SQLiteDatabase db;
 
     @Override
@@ -57,15 +56,15 @@ public class Weather extends Activity {
 
         //Accept data from MyActivity class
         Bundle extras = getIntent().getExtras();
-        s_city=extras.getString("city");
-        city.setText(s_city);
-        latitude = extras.getString("latitude");
-        longitude = extras.getString("longitude");
+        StrCity=extras.getString("city");
+        city.setText(StrCity);
+        StrLatitude = extras.getString("StrLatitude");
+        StrLongitude = extras.getString("StrLongitude");
 
         db = openOrCreateDatabase("database.db", MODE_PRIVATE, null);
 
-        if(isConnected() && !latitude.equals("n/a")) {
-            new HttpAsyncTask().execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude);
+        if(isConnected() && !StrLatitude.equals("n/a")) {
+            new HttpAsyncTask().execute("http://api.openweathermap.org/data/2.5/weather?lat=" + StrLatitude + "&lon=" + StrLongitude);
         }
         else {
             this.history();
@@ -104,15 +103,15 @@ public class Weather extends Activity {
 
                 // Get the data from JSONObject
                 Double temp = Double.parseDouble(json.getJSONObject("main").getString("temp"))-273.15;
-                s_temperature = temp.toString();
-                s_pressure = json.getJSONObject("main").getString("pressure");
-                s_humidity = json.getJSONObject("main").getString("humidity");
-                s_description = json.getJSONArray("weather").getJSONObject(0).getString("description");
+                StrTemperature = temp.toString();
+                StrPressure = json.getJSONObject("main").getString("pressure");
+                StrHumidity = json.getJSONObject("main").getString("humidity");
+                StrDescription = json.getJSONArray("weather").getJSONObject(0).getString("description");
 
-                temperature.setText(s_temperature);
-                pressure.setText(s_pressure);
-                humidity.setText(s_humidity);
-                description.setText(s_description);
+                temperature.setText(StrTemperature);
+                pressure.setText(StrPressure);
+                humidity.setText(StrHumidity);
+                description.setText(StrDescription);
                 new_data();
 
             } catch (JSONException e) {
@@ -163,8 +162,8 @@ public class Weather extends Activity {
 
     // refresh the weather
     public void refresh(View v){
-        if(isConnected() && !latitude.equals("n/a")) {
-            new HttpAsyncTask().execute("http://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude);
+        if(isConnected() && !StrLatitude.equals("n/a")) {
+            new HttpAsyncTask().execute("http://api.openweathermap.org/data/2.5/weather?lat="+StrLatitude+"&lon="+StrLongitude);
             Toast.makeText(this, "Connecting...", Toast.LENGTH_LONG).show();
         } else {
             this.history();
@@ -175,16 +174,16 @@ public class Weather extends Activity {
     public boolean isConnected(){
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Activity.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected())
+        if (networkInfo != null && networkInfo.isConnected()) {
             return true;
-        else
-            return false;
+        }
+        return false;
     }
     public void new_data(){
         try {
             // Insert data in table tblWeather
-            db.execSQL("Insert into tblWeather(City,Temperature,Description,Pressure,Humidity) Values('" + s_city + "','" +
-                    s_temperature + "','" + s_description + "','" + s_pressure + "','" + s_humidity + "');");
+            db.execSQL("Insert into tblWeather(City,Temperature,Description,Pressure,Humidity) Values('" + StrCity + "','" +
+                    StrTemperature + "','" + StrDescription + "','" + StrPressure + "','" + StrHumidity + "');");
             Toast.makeText(this,"Inserted into database",Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Toast.makeText(this,"Not Inserted into database: " + e.toString(),Toast.LENGTH_LONG).show();
@@ -198,11 +197,11 @@ public class Weather extends Activity {
             if (cursor != null) {
                 cursor.moveToNext();
                 //get data from history
-                s_city = cursor.getString(cursor.getColumnIndex("City"));
-                s_temperature = cursor.getString(cursor.getColumnIndex("Temperature"));
-                s_description = cursor.getString(cursor.getColumnIndex("Description"));
-                s_pressure = cursor.getString(cursor.getColumnIndex("Pressure"));
-                s_humidity = cursor.getString(cursor.getColumnIndex("Humidity"));
+                StrCity = cursor.getString(cursor.getColumnIndex("City"));
+                StrTemperature = cursor.getString(cursor.getColumnIndex("Temperature"));
+                StrDescription = cursor.getString(cursor.getColumnIndex("Description"));
+                StrPressure = cursor.getString(cursor.getColumnIndex("Pressure"));
+                StrHumidity = cursor.getString(cursor.getColumnIndex("Humidity"));
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.setTitle("No internet connection or gps!");
@@ -210,11 +209,11 @@ public class Weather extends Activity {
                 alert.setPositiveButton("OK",null);
                 alert.show();
 
-                city.setText(s_city);
-                temperature.setText(s_temperature);
-                description.setText(s_description);
-                pressure.setText(s_pressure);
-                humidity.setText(s_humidity);
+                city.setText(StrCity);
+                temperature.setText(StrTemperature);
+                description.setText(StrDescription);
+                pressure.setText(StrPressure);
+                humidity.setText(StrHumidity);
             }
         }catch (Exception e){
             Toast.makeText(this, "No data on the history", Toast.LENGTH_LONG).show();
