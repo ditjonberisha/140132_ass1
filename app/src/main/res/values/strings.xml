@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DB</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_weather">Weather</string>
+    <string name="title_activity_location">Location</string>
+    <string name="title_activity_map">Map</string>
+    <string name="btnmylocation">My Location</string>
+    <string name="btnweather">Weather</string>
+    <string name="btninfo">Info Location</string>
+    <string name="txtcity">City</string>
+    <string name="txt1">%</string>
+    <string name="txthumidity">n/a</string>
+    <string name="txtmbar">mbar</string>
+    <string name="txtpressure">n/a</string>
+    <string name="ibtnrefresh">ibtnrefresh</string>
+    <string name="txthum">Humidity:</string>
+    <string name="txtpres">Pressure:</string>
+    <string name="txtcelsius">\u2103</string>
+    <string name="txtdescription">description</string>
+    <string name="txttemperature">n/a</string>
+    <string name="txtlat">Latitude:</string>
+    <string name="txtlatitude">n/a</string>
+    <string name="txtlong">Longitude:</string>
+    <string name="txtlongitude">n/a</string>
+    <string name="txtalt">Altitude:</string>
+    <string name="txtcity1">City</string>
+    <string name="txtaltitude">n/a</string>
+    <string name="txtmetres">metres</string>
+
+</resources>

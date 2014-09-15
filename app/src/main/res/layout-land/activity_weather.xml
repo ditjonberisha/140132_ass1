@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/back">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="City"
+        android:id="@+id/txtViewcity"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffff"
+        android:textSize="40sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pressure:"
+        android:id="@+id/textViewpres"
+        android:layout_marginBottom="104dp"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Humidity:"
+        android:id="@+id/txtViewhum"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="43dp" />
+
+    <TextView
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:text="n/a"
+        android:gravity="right"
+        android:id="@+id/txtViewpressure"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        android:layout_alignBottom="@+id/textViewpres"
+        android:layout_toEndOf="@+id/textViewpres" />
+
+    <TextView
+        android:layout_width="430dp"
+        android:layout_height="wrap_content"
+        android:text="n/a"
+        android:gravity="right"
+        android:id="@+id/txtViewhumidity"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        android:layout_alignBottom="@+id/txtViewhum"
+        android:layout_toEndOf="@+id/txtViewhum" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mbar"
+        android:gravity="center"
+        android:id="@+id/textViewmbar"
+        android:layout_alignBottom="@+id/txtViewpressure"
+        android:layout_toEndOf="@+id/txtViewpressure"
+        android:textColor="#ffffff"
+        android:textSize="23sp"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="%"
+        android:gravity="center"
+        android:id="@+id/textView1"
+        android:layout_alignBottom="@+id/txtViewhumidity"
+        android:layout_toEndOf="@+id/txtViewhumidity"
+        android:textColor="#ffffff"
+        android:textSize="23sp"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="n/a"
+        android:id="@+id/txtViewtemperature"
+        android:layout_below="@+id/txtViewcity"
+        android:layout_alignEnd="@+id/txtViewpressure"
+        android:textSize="40sp"
+        android:textColor="#ffffff"
+        android:maxHeight="55dp"
+        android:maxWidth="90dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\u2103"
+        android:id="@+id/textViewcelsius"
+        android:layout_toEndOf="@+id/txtViewpressure"
+        android:textColor="#ffffff"
+        android:textSize="32sp"
+        android:layout_alignTop="@+id/txtViewtemperature" />
+
+    <TextView
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="description"
+        android:gravity="center"
+        android:id="@+id/txtViewdescription"
+        android:layout_below="@+id/txtViewtemperature"
+        android:layout_alignParentEnd="true"
+        android:textSize="25sp"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>
