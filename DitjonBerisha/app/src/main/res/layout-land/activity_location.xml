@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/location">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtlat"
+        android:id="@+id/txtViewlat"
+        android:layout_marginTop="85dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textSize="23sp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtlatitude"
+        android:gravity="right"
+        android:id="@+id/txtViewlatitude"
+        android:layout_alignTop="@+id/txtViewlat"
+        android:layout_alignParentEnd="true"
+        android:textSize="23sp"
+        android:textColor="#ffffff"
+        android:layout_toEndOf="@+id/txtViewlat" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtlong"
+        android:id="@+id/textViewlong"
+        android:layout_below="@+id/txtViewlat"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="41dp"
+        android:textSize="23sp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtlongitude"
+        android:gravity="right"
+        android:id="@+id/txtViewlongitude"
+        android:layout_alignTop="@+id/textViewlong"
+        android:layout_alignParentEnd="true"
+        android:textSize="23sp"
+        android:textColor="#ffffff"
+        android:layout_toEndOf="@+id/textViewlong" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtalt"
+        android:id="@+id/txtViewalt"
+        android:layout_below="@+id/textViewlong"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp"
+        android:textSize="23sp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtcity1"
+        android:gravity="center"
+        android:id="@+id/txtViewcity1"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="35sp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtaltitude"
+        android:gravity="right"
+        android:id="@+id/txtViewaltitude"
+        android:textSize="23sp"
+        android:textColor="#ffffff"
+        android:layout_toEndOf="@+id/txtViewalt"
+        android:layout_alignTop="@+id/txtViewalt"
+        android:layout_toStartOf="@+id/textViewmetres" />
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txtmetres"
+        android:gravity="right"
+        android:id="@+id/textViewmetres"
+        android:layout_alignBottom="@+id/txtViewaltitude"
+        android:layout_alignParentEnd="true"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+</RelativeLayout>
