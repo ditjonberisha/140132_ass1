@@ -115,4 +115,13 @@
         android:textSize="25sp"
         android:textColor="#ffffff" />
 
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/imageButton"
+        android:layout_alignParentEnd="true"
+        android:background="@android:drawable/stat_notify_sync"
+        android:onClick="refresh"
+        android:contentDescription="@string/ibtnrefresh" />
+
 </RelativeLayout>
