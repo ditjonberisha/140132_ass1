@@ -63,7 +63,7 @@ public class Weather extends Activity {
         db = openOrCreateDatabase("database.db", MODE_PRIVATE, null);
 
 
-        // if has internet will get weather from url that has latitude and longitude
+        // if has internet connection will get weather from url that has latitude and longitude
         if(isConnected() && !StrLatitude.equals("n/a")) {
             new HttpAsyncTask().execute("http://api.openweathermap.org/data/2.5/weather?lat=" + StrLatitude + "&lon=" + StrLongitude);
         }
@@ -204,6 +204,7 @@ public class Weather extends Activity {
                 StrPressure = cursor.getString(cursor.getColumnIndex("Pressure"));
                 StrHumidity = cursor.getString(cursor.getColumnIndex("Humidity"));
 
+                // Alert dialog to inform
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.setTitle("No internet connection or gps!");
                 alert.setMessage("Data from history");
