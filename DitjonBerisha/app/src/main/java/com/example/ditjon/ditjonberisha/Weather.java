@@ -28,7 +28,6 @@ import java.io.InputStreamReader;
 
 public class Weather extends Activity {
 
-    // Create variables
     TextView temperature;
     TextView pressure;
     TextView humidity;
@@ -63,6 +62,8 @@ public class Weather extends Activity {
 
         db = openOrCreateDatabase("database.db", MODE_PRIVATE, null);
 
+
+        // if has internet will get weather from url that has latitude and longitude
         if(isConnected() && !StrLatitude.equals("n/a")) {
             new HttpAsyncTask().execute("http://api.openweathermap.org/data/2.5/weather?lat=" + StrLatitude + "&lon=" + StrLongitude);
         }
