@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 public class Location extends Activity {
 
-    // create variable
     public TextView latitude;
     public TextView longitude;
     public TextView altitude;
@@ -20,7 +19,6 @@ public class Location extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        // find TextView by id
         latitude = (TextView) findViewById(R.id.txtViewlatitude);
         longitude = (TextView) findViewById(R.id.txtViewlongitude);
         altitude = (TextView) findViewById(R.id.txtViewaltitude);
@@ -33,7 +31,6 @@ public class Location extends Activity {
         String StrLongitude = extras.getString("longitude");
         String StrAltitude = extras.getString("altitude");
 
-        // setText in textView
         city.setText(StrCity);
         latitude.setText(StrLatitude);
         longitude.setText(StrLongitude);

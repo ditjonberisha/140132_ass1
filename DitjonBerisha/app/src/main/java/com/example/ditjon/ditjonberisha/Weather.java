@@ -57,8 +57,8 @@ public class Weather extends Activity {
         Bundle extras = getIntent().getExtras();
         StrCity=extras.getString("city");
         city.setText(StrCity);
-        StrLatitude = extras.getString("StrLatitude");
-        StrLongitude = extras.getString("StrLongitude");
+        StrLatitude = extras.getString("latitude");
+        StrLongitude = extras.getString("longitude");
 
         db = openOrCreateDatabase("database.db", MODE_PRIVATE, null);
 
